@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
-    <section className="px-20 py-10 mb-12 bg-black">
+    <section className="px-20 py-10 bg-black">
       <div className="top">
         <h4 className="text-white text-sm font-semibold w-1/2">
           Client feedback
@@ -39,7 +39,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="image-cointainer-for-aboutus w-full h-[400px] overflow-hidden">
+      <div className="image-cointainer-for-aboutus w-full h-96 overflow-hidden">
         <img src="/aboutus.jpg" alt="about us" className="w-full h-full object-cover rotate-y-180 bg-blend-luminosity"/>
       </div>
     </section>

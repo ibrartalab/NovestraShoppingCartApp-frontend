@@ -4,6 +4,7 @@ import Hero from "../components/Landing/Hero";
 import TopCollection from "../components/Landing/TopCollection";
 import Products from "../components/Landing/Products";
 import AboutUs from "../components/Landing/AboutUs";
+import Footer from "../components/Landing/Footer";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <TopCollection />
       <Products />
       <AboutUs />
+      <Footer />
     </div>
   );
 };
