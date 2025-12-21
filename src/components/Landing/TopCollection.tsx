@@ -3,12 +3,12 @@ import ProductCard from './ProductCard';
 
 const TopCollection = () => {
   return (
-    <section className="top-collection-section px-20 mt-12">
+    <section className="top-collection-section px-20 mt-12 mb-12">
       <div className="top-collection-contents flex justify-between items-start gap-4 mb-8 ">
         <h2 className="text-black text-sm font-semibold w-1/2">
           Top Collections
         </h2>
-        <p className="text-black text-3xl font-semibold">
+        <p className="text-black text-3xl font-light">
           This collection is crafted to awaken tired, dull complexions with
           gentle, glow-enhancing formulas that hydrate, soften, and revive.From
           <span className='text-gray-500 ml-2'>

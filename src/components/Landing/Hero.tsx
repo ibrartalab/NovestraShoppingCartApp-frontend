@@ -28,7 +28,7 @@ const Hero = () => {
             title="Midnight Rose Eau De Parfum"
             description="Experience the allure of midnight with our signature fragrance, blending rich rose notes with a hint of mystery."
             price={79.99}
-            imageUrl="/1.jpg"
+            imageUrl="/3.jpg"
           />
           <SliderController />
         </div>
