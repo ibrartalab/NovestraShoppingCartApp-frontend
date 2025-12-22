@@ -2,7 +2,7 @@ import ProductCard from './ProductCard';
 
 const TopCollection = () => {
   return (
-    <section className="top-collection-section px-20 mt-12 mb-12">
+    <section className="top-collection-section px-20 mt-12 mb-12" id="collections">
       <div className="top-collection-contents flex justify-between items-start gap-4 mb-8 ">
         <h2 className="text-black text-sm font-semibold w-1/2">
           Top Collections

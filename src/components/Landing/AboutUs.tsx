@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const AboutUs = () => {
   return (
-    <section className="px-20 py-10 bg-black">
+    <section className="px-20 py-10 bg-black" id="about">
       <div className="top">
         <h4 className="text-white text-sm font-semibold w-1/2">
           Client feedback
@@ -14,7 +14,7 @@ const AboutUs = () => {
           </h2>
           <div className="navigation-dots flex gap-4">
             <div className="circle w-12 h-12 flex justify-center items-center rounded-full bg-gray-200">
-              <FaArrowRight />
+              <FaArrowRight className="rotate-180"/>
             </div>
             <div className="circle w-12 h-12 flex justify-center items-center rounded-full bg-gray-200">
               <FaArrowRight />

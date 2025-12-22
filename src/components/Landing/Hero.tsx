@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button";
 import ProductsSlider from "./ProductsSlider";
 import SliderController from "./SliderController";
+import { SliderContext } from "../../context/SiderContext";
 
 const Hero = () => {
+      const { counter, setCounter } = useContext(SliderContext);
+
   return (
     <section className="hero">
       <div className="hero-section-contents px-20 mt-12">
@@ -28,7 +31,7 @@ const Hero = () => {
             title="Midnight Rose Eau De Parfum"
             description="Experience the allure of midnight with our signature fragrance, blending rich rose notes with a hint of mystery."
             price={79.99}
-            imageUrl="/3.jpg"
+            imageUrl={`/${counter}.jpg`}
           />
           <SliderController />
         </div>

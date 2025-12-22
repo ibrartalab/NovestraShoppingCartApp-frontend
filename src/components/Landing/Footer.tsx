@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <section>
+    <section id='footer'>
         <div className="footer bg-black text-white px-20 py-10 flex justify-between items-center">
             <div className="left">
                 <h2 className="text-2xl font-semibold">Novestra - NShopping</h2>
