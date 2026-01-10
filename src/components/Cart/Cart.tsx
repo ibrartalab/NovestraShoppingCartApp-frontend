@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../Button'
 import CartItem from './CartItem';
+import { CartToggleContext } from '../../context/CartToggleContext';
 
 
 
 const Cart = () => {
+    const { isCartOpen , setIsCartOpen} = useContext(CartToggleContext);
+  
   return (
     <div className="absolute top-4 right-20 bg-white w-2/6 h-auto rounded-lg shadow-lg flex justify-between z-50">
       <div className="left p-4">
@@ -38,7 +41,7 @@ const Cart = () => {
             type="button"
             styleClass="text-black rounded-full border-2 w-8 h-8 flex items-center justify-center cursor-pointer"
             disabled={false}
-            onClick={() => {}}
+            onClick={() => setIsCartOpen(false)}
           />
         </div>
         <p className="mt-10">Total Items: {0}</p>

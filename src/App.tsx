@@ -14,6 +14,7 @@ import CartToggleContextProvider from "./context/CartToggleContext";
 const HomePage = lazy(() => import("./pages/Home"));
 const LoginPage = lazy(() => import("./pages/Login"));
 const SignupPage = lazy(() => import("./pages/Signup"));
+const AdminDashboard = lazy(() => import("./pages/Admin/AdminDashboard"));
 
 function App() {
   // const PrivateRoutes = ({ children }: { children: React.ReactNode }) => {
@@ -38,6 +39,14 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/signup" element={<SignupPage />} />
                   <Route path="/login" element={<LoginPage />} />
+                  <Route
+                    path="/admin/dashboard"
+                    element={
+                      // <PrivateRoutes>
+                      <AdminDashboard />
+                      // </PrivateRoutes>
+                    }
+                  />
                 </Routes>
               </Suspense>
             </SearchContextProvider>

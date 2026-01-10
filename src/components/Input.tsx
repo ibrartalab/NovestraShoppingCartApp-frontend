@@ -8,7 +8,8 @@ type InputTypes =
   | "radio"
   | "date"
   | "time"
-  | "url";
+  | "url"
+  | "file";
 
 interface InputProps {
   label?: string;
@@ -23,6 +24,7 @@ interface InputProps {
   errorMessage?: string;
   styleClass?: string;
   pattern?: string;
+  accept?: string;
 }
 
 const Input = ({

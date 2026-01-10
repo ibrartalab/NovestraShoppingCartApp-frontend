@@ -10,7 +10,7 @@ interface cartToggleContextProviderType {
 }
 
 const CartToggleContext = createContext<cartToggleContextType>({
-    isCartOpen: true,
+    isCartOpen: false,
     setIsCartOpen: () => {},
 });
 

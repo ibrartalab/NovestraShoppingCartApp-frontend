@@ -14,7 +14,7 @@ const AboutUs = () => {
           </h2>
           <div className="navigation-dots flex gap-4">
             <div className="circle w-12 h-12 flex justify-center items-center rounded-full bg-gray-200">
-              <FaArrowRight className="rotate-180"/>
+              <FaArrowRight className="rotate-180" />
             </div>
             <div className="circle w-12 h-12 flex justify-center items-center rounded-full bg-gray-200">
               <FaArrowRight />
@@ -40,7 +40,11 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="image-cointainer-for-aboutus w-full h-96 overflow-hidden">
-        <img src="/aboutus.jpg" alt="about us" className="w-full h-full object-cover rotate-y-180 bg-blend-luminosity"/>
+        <img
+          src="/aboutus.jpg"
+          alt="about us"
+          className="w-full h-full object-cover rotate-y-180 bg-blend-luminosity"
+        />
       </div>
     </section>
   );
