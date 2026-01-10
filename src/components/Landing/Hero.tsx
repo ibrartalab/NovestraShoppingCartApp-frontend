@@ -5,7 +5,7 @@ import SliderController from "./SliderController";
 import { SliderContext } from "../../context/SiderContext";
 
 const Hero = () => {
-      const { counter, setCounter } = useContext(SliderContext);
+      const { counter } = useContext(SliderContext);
 
   return (
     <section className="hero">
@@ -21,12 +21,12 @@ const Hero = () => {
           <Button
             title="View Our Collections"
             type="button"
-            styleClass="bg-white w-60 h-12 text-md font-semibold text-black rounded-md hover:bg-gray-200 transition duration-300"
+            styleClass="border border-white w-60 h-12 text-md font-semibold text-white rounded-md hover:bg-gray-200 hover:text-black transition duration-300 cursor-pointer"
             onClick={() => {}}
             disabled={false}
           />
         </div>
-        <div className="bottom mt-12">
+        <div className="bottom mt-10">
           <ProductsSlider
             title="Midnight Rose Eau De Parfum"
             description="Experience the allure of midnight with our signature fragrance, blending rich rose notes with a hint of mystery."

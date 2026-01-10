@@ -17,7 +17,7 @@ const SliderController = () => {
         }
     };
   return (
-    <div className="mt-8 flex justify-between items-center w-md">
+    <div className="mt-6 flex justify-between items-center w-md">
       <div className="slider-controller-left flex gap-4">
         <div className={`arrow-1 w-20 h-1 rounded-lg ${counter === 1 ? "bg-gray-200" : "bg-gray-200/20"}`}></div>
         <div className={`arrow-2 w-20 h-1 rounded-lg ${counter === 2 ? "bg-gray-200" : "bg-gray-200/20"}`}></div>

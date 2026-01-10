@@ -6,13 +6,13 @@ const { BACKEND_URL } = secrets;
 // Create an Axios instance for API requests
 // This instance can be customized with interceptors, base URL, and headers
 export const axiosInstance: AxiosInstance = axios.create({
-  baseURL: BACKEND_URL, // Adjust the base URL as needed
-  timeout: 10000, // Set a timeout for requests
+  baseURL: BACKEND_URL,
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    Accept: "application/json",
+    "Accept": "application/json",
     "Access-Control-Allow-Origin": "*",
-  },
+  }, // This is the correct way to send cookies/auth headers
 });
 
 export const axiosPrivate: AxiosInstance = axios.create({
@@ -20,11 +20,11 @@ export const axiosPrivate: AxiosInstance = axios.create({
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
-    Accept: "application/json",
+    "Accept": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Credentials": "true",
   },
-});     
+  withCredentials: true, // This is the correct way to send cookies/auth headers
+});    
 
 export default axiosPrivate;
 // export default axiosInstance;

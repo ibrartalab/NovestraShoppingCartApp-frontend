@@ -1,24 +1,23 @@
 // This file defines the types related to user management in the application.
 
 export interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
+  id: number;
+  fullName: string;
   userName: string;
   email: string;
   createdAt: string;
 }
 export interface AuthLoginPayload {
-  username: string;
+  email: string;
   password: string;
 }
 
 export interface AuthSignupPayload {
-  firstName: string;
-  lastName: string;
-  username: string;
+  fullName: string;
+  userName: string;
   email: string;
   password: string;
+  phoneNumber?: string;
 }
 
 export interface AuthResponse {

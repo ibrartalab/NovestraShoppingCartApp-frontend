@@ -20,7 +20,7 @@ export function useAuth() {
     try {
       const response = await apiLogin(payload);
       // Add some basic validation
-      if (!response.data) {
+      if (!response?.data.token || !response?.data.user) {
         throw new Error("Invalid response data");
       } else if (
         response.data.user.userName === "" ||

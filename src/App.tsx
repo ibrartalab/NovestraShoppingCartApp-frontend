@@ -4,8 +4,8 @@ import { Loader } from "./components/Loader";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import SearchContextProvider from "./context/SearchContext";
-import SliderController from "./context/SiderContext";
 import SliderControllerContext from "./context/SiderContext";
+import CartToggleContextProvider from "./context/CartToggleContext";
 // import { useAppSelector } from "./hooks/redux/reduxHooks";
 // import { Navigate } from "react-router-dom";
 
@@ -31,6 +31,7 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <SliderControllerContext>
+            <CartToggleContextProvider>
             <SearchContextProvider>
               <Suspense fallback={<Loader />}>
                 <Routes>
@@ -40,6 +41,7 @@ function App() {
                 </Routes>
               </Suspense>
             </SearchContextProvider>
+            </CartToggleContextProvider>
           </SliderControllerContext>
         </BrowserRouter>
       </Provider>

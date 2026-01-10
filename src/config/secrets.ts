@@ -1,5 +1,5 @@
 const BACKEND_URL =
-  import.meta.env.VITE_BACKEND_URL || "http://localhost:5000/api/";
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:5227/api/";
 
 export const secrets = {
   BACKEND_URL,
