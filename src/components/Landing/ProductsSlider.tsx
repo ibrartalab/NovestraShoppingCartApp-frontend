@@ -11,6 +11,8 @@ const ProductsSlider = ({
   price,
   imageUrl,
 }: ProductsSliderProps) => {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  imageUrl = baseUrl + '/' + imageUrl;
   return (
     <div className="slider-wrapper bg-gray-100/5 p-4 rounded-lg flex items-center gap-8 w-md">
       <div className="left-container text-white">

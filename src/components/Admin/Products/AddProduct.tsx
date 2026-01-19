@@ -51,6 +51,16 @@ const AddProduct = () => {
         } catch (error: unknown) {
             return error;
         }
+
+        window.alert("Product created successfully!");
+        setFormData({
+            name: "",
+            category: "",
+            price: "",
+            stock: "",
+            description: "",
+            imageUrl: "",
+        });
     }
   return (
     <div>
@@ -131,8 +141,7 @@ const AddProduct = () => {
                 id="imageUrl"
                 onChange={handleImageChange}
                 errorMessage=""
-                accept=".png, .jpg, .jpeg"    
-                // value=""
+                accept=".png, .jpg, .jpeg" 
             />
             </div>
             <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">Add Product</button>

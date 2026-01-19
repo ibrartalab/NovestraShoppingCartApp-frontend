@@ -3,9 +3,20 @@ import Button from "../Button";
 import ProductsSlider from "./ProductsSlider";
 import SliderController from "./SliderController";
 import { SliderContext } from "../../context/SiderContext";
+import { useAppSelector } from "../../hooks/redux/reduxHooks";
 
 const Hero = () => {
       const { counter } = useContext(SliderContext);
+      const {products } = useAppSelector((state) => state.products);
+
+      const featuresProduct = products.filter(
+        (p) =>
+          p.name === "Sea Salt & Sage" ||
+          p.name === "Solar Nectar" ||
+          p.name === "Velvet Peony"
+      );
+
+      console.log("Featured Products in Hero:", featuresProduct);
 
   return (
     <section className="hero">
@@ -27,12 +38,14 @@ const Hero = () => {
           />
         </div>
         <div className="bottom mt-10">
+         { featuresProduct.length > 0 && (
           <ProductsSlider
-            title="Midnight Rose Eau De Parfum"
-            description="Experience the allure of midnight with our signature fragrance, blending rich rose notes with a hint of mystery."
-            price={79.99}
-            imageUrl={`/${counter}.jpg`}
+            title={featuresProduct[counter].name}
+            description={featuresProduct[counter].description}
+            price={featuresProduct[counter].price}
+            imageUrl={featuresProduct[counter].imageUrl}
           />
+         )}
           <SliderController />
         </div>
       </div>

@@ -9,6 +9,8 @@ interface ProductCardProps {
 
 
 const ProductCard = ({ title, price, imageUrl, onAddToCart }: ProductCardProps) => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+    imageUrl = baseUrl + '/' + imageUrl;
   return (
     <div className="w-60">
         <div className="product-image-container w-60 h-60 rounded-lg">
