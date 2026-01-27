@@ -1,37 +1,52 @@
-import React, { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import Button from '../Button'
-import CartItem from './CartItem';
 import { CartToggleContext } from '../../context/CartToggleContext';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux/reduxHooks';
+import { getCart } from '../../features/cart/cartSlice';
+import CartItem from './CartItem';
 
 
 
 const Cart = () => {
-    const { isCartOpen , setIsCartOpen} = useContext(CartToggleContext);
+    const { setIsCartOpen} = useContext(CartToggleContext);
+    const userId = useAppSelector((state) => state.auth.userId);
+    const cartItems = useAppSelector((state) => state.cart.cartItems);
+    const dispatch = useAppDispatch();
+
+
+    useEffect(()=> {
+      if(userId) {
+        dispatch(getCart(userId)).then((respomse =>{
+          console.log("Cart fetched successfully:", respomse);
+        }));
+      }
+    },[dispatch,userId])
+
+    const totalItems = cartItems.reduce(
+      (acc, item) => acc + item.quantity,
+      0
+    );
+    const totalPrice = cartItems.reduce(
+      (acc, item) => acc + (item.product?.price ?? 0) * item.quantity,
+      0
+    );
   
   return (
     <div className="absolute top-4 right-20 bg-white w-2/6 h-auto rounded-lg shadow-lg flex justify-between z-50">
       <div className="left p-4">
         <h3>Shopping Cart {0}</h3>
         <hr />
-        <p>Your cart is empty.</p>
-        <CartItem
-          name="Product Name"
-          quantity={1}
-          price={29.99}
-          imageUrl="/1.jpg"
-        />
-        <CartItem
-          name="Product Name"
-          quantity={1}
-          price={29.99}
-          imageUrl="/1.jpg"
-        />
-        <CartItem
-          name="Product Name"
-          quantity={1}
-          price={29.99}
-          imageUrl="/1.jpg"
-        />
+        {cartItems.length <= 1 && (
+          <p className="mt-4 text-gray-500">Your cart is empty.</p>
+        )}
+        {cartItems.map((item) => (
+            <CartItem
+              name={item.product.name}
+              quantity={item.quantity}
+              price={item.product.price}
+              imageUrl={item.product.imageUrl}
+            />
+          ))}
       </div>
       <div className="right bg-gray-300 w-1/2 h-auto p-4 rounded-tr-lg rounded-br-lg">
         <div className="header flex justify-between items-center">
@@ -44,8 +59,8 @@ const Cart = () => {
             onClick={() => setIsCartOpen(false)}
           />
         </div>
-        <p className="mt-10">Total Items: {0}</p>
-        <p className="mt-1">Total: $0.00</p>
+        <p className="mt-10">Total Items: {totalItems}</p>
+        <p className="mt-1">Total: ${totalPrice.toFixed(2)}</p>
         <Button
           title="Proceed to Checkout"
           type="button"

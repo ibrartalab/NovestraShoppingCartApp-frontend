@@ -10,12 +10,12 @@ interface SliderControllerProviderType {
 }
 
 const SliderContext = createContext<slidersProps>({
-  counter: 1,
+  counter: 0,
   setCounter: () => {},
 });
 
 const SliderControllerContext = ({ children }: SliderControllerProviderType) => {
-  const [counter, setCounter] = useState<number>(1);
+  const [counter, setCounter] = useState<number>(0);
 
   return (
     <SliderContext.Provider value={{ counter, setCounter }}>

@@ -1,5 +1,4 @@
 import { BsFillBagPlusFill } from "react-icons/bs";
-import { LuSearch } from "react-icons/lu";
 import {HashLink as Link} from 'react-router-hash-link';
 import Button from "../Button";
 import { useContext } from "react";
@@ -7,12 +6,21 @@ import { CartToggleContext } from "../../context/CartToggleContext";
 import Cart from "../Cart/Cart";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux/reduxHooks";
 import { useNavigate } from "react-router-dom";
+import { logOut } from "../../features/auth/authSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { isCartOpen , setIsCartOpen} = useContext(CartToggleContext);
-  const userName = useAppSelector((state) => state.auth.userName);
+  const userId = useAppSelector((state) => state.auth.userId);
   const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut())
+
+    navigate("/login");
+
+    console.log("User logged out");
+  }
   
   return (
     <div className="navbar flex items-center justify-between p-4 px-20 relative">
@@ -40,28 +48,25 @@ const Navbar = () => {
             />
           </div>
         
-        {userName !== "" ? (
-          <div>
+        {userId !== null ? (
+          
             <Button
               title="Logout"
               styleClass="bg-white text-black px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:bg-gray-200 transition duration-300"
               type="button"
               onClick={() => {
-                dispatch({ type: "auth/logOut" });
-                navigate("/");
+                dispatch(logOut());
               }}
               disabled={false}
             />
-          </div>
+          
         ) : (
           <div>
             <Button
               title="Login"
               styleClass="bg-white text-black px-4 py-2 rounded-md text-sm font-medium cursor-pointer hover:bg-gray-200 transition duration-300"
               type="button"
-              onClick={() => {
-                navigate("/login");
-              }}
+              onClick={handleLogout}
               disabled={false}
             />
             <Button

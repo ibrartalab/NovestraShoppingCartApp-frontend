@@ -8,6 +8,10 @@ interface CartItemProps {
 }
 
 const CartItem = ({ name, quantity, price, imageUrl }: CartItemProps) => {
+
+  const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+  imageUrl = baseUrl + "/" + imageUrl;
+  
   return (
     <div className="cart-item flex justify-between gap-4 my-4 p-2">
       <div className="left">

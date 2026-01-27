@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Button from "../Button";
-import ProductsSlider from "./ProductsSlider";
-import SliderController from "./SliderController";
+import ProductsSlider from "../Product/ProductsSlider";
+import SliderController from "../Product/SliderController";
 import { SliderContext } from "../../context/SiderContext";
 import { useAppSelector } from "../../hooks/redux/reduxHooks";
 
@@ -15,8 +15,6 @@ const Hero = () => {
           p.name === "Solar Nectar" ||
           p.name === "Velvet Peony"
       );
-
-      console.log("Featured Products in Hero:", featuresProduct);
 
   return (
     <section className="hero">

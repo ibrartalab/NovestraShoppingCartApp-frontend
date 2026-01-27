@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "../components/Landing/Navbar";
 import Hero from "../components/Landing/Hero";
-import TopCollection from "../components/Landing/TopCollection";
-import Products from "../components/Landing/Products";
+import TopCollection from "../components/Product/TopCollection";
+import Products from "../components/Product/Products";
 import AboutUs from "../components/Landing/AboutUs";
 import Footer from "../components/Landing/Footer";
 

@@ -1,32 +1,43 @@
-import React, { useEffect } from 'react'
-import ProductCard from './ProductCard';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux/reduxHooks';
-import { getProducts } from '../../features/product/productSlice';
-import { Loader } from '../Loader';
+import React, { useEffect } from "react";
+import ProductCard from "./ProductCard";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux/reduxHooks";
+import { getProducts } from "../../features/product/productSlice";
+import { Loader } from "../Loader";
+import { addToCart, getCart } from "../../features/cart/cartSlice";
 
 const Products = () => {
-  const {products, loading,error} = useAppSelector((state) => state.products);
+  const { products, loading, error } = useAppSelector(
+    (state) => state.products
+  );
   const dispatch = useAppDispatch();
+  const id = useAppSelector((state) => state.cart.id);
+  const userId = useAppSelector((state) => state.auth.userId);
+
 
   useEffect(() => {
-    // You can dispatch an action to fetch products here if needed
     dispatch(getProducts());
-  }, [dispatch]);
+    // If the user is logged in, fetch their current cart too
+    if (userId) {
+      dispatch(getCart(userId));
+    }
+  }, [dispatch, userId]);
 
-  if(loading){
-    return<><Loader /></>
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
   }
-  if(error){
-    return <div className='text-red-500 text-center mt-10'>Error: {error}</div>
+  if (error) {
+    return <div className="text-red-500 text-center mt-10">Error: {error}</div>;
   }
-
-  console.log("Products:", products.map(p => p.imageUrl.split('/')[3]));
 
   return (
-    <section className='bg-gray-100 py-10' id="products">
+    <section className="bg-gray-100 py-10" id="products">
       <div className="products-section px-20 mt-12 m-auto text-center">
         <h2 className="text-black text-3xl font-semibold">Our Products</h2>
-        <p className='text-gray-600 mt-4 mb-8'>
+        <p className="text-gray-600 mt-4 mb-8">
           Coco is part of the iconic Coco fragrance line launched in 2012, it
           captures the darker, more sensual side of the brand's legend.
         </p>
@@ -34,11 +45,34 @@ const Products = () => {
           {/* Product items would go here */}
           {products.map((product) => (
             <ProductCard
-              key={product.category}
+              key={product.id}
               title={product.name}
-              price={product.price} 
+              price={product.price}
               imageUrl={product.imageUrl} // Assuming imageUrl is a comma-separated string
-              onAddToCart={() => {}}
+              onAddToCart={async () => {
+                try {
+                  // .unwrap() allows you to use try/catch on the thunk
+
+                  if(!id){
+                    alert("Cart not loaded yet. Please wait a moment.");
+                    return;
+                  }
+                  await dispatch(
+                    addToCart({
+                      userId: userId!,
+                      cartId: id,
+                      productId: product.id,
+                      quantity: 1
+                    })
+                  ).unwrap();
+
+                  await dispatch(getCart(userId!));
+
+                  alert(`${product.name} added to cart!`);
+                } catch (err:unknown) {
+                  alert(`Failed to add to cart. Please try again.${err}`);
+                }
+              }}
             />
           ))}
           {/* <ProductCard
@@ -105,6 +139,6 @@ const Products = () => {
       </div>
     </section>
   );
-}
+};
 
-export default Products
+export default Products;
