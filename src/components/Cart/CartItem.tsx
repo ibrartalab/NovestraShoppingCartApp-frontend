@@ -1,17 +1,43 @@
+import {  updateCartItemQty } from "../../features/cart/cartSlice";
+import { useAppDispatch } from "../../hooks/redux/reduxHooks";
 import Button from "../Button";
 
 interface CartItemProps {
   name?: string;
-  quantity?: number;
+  quantity: number; // Removed optional for cleaner logic
   price?: number;
-  imageUrl?: string;
+  imageUrl?: string;  
+  productId: number;
+  stock?: number;
+  userId: number;
 }
 
-const CartItem = ({ name, quantity, price, imageUrl }: CartItemProps) => {
-
+const CartItem = ({ name, quantity, price, imageUrl,productId,stock,userId }: CartItemProps) => {
+  const dispatch = useAppDispatch();
   const baseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
   imageUrl = baseUrl + "/" + imageUrl;
+
+
+  const handleQtyIncrease = async () => {
+    const newQty = quantity + 1;
+    if (quantity < (stock || 999)) {
+      // ONLY dispatch the AsyncThunk.
+      // Let the 'fulfilled' case in the slice handle the state update.
+      await dispatch(
+        updateCartItemQty({ userId, productId, quantity: newQty })
+      );
+    } else {
+      alert("Maximum stock reached");
+    }
+  };
   
+  const handleQtyDecrease = async () => {
+    const newQty = quantity - 1;
+    if (quantity > 1) {
+      await dispatch(updateCartItemQty({ userId, productId, quantity: newQty }));
+    }
+  };
+
   return (
     <div className="cart-item flex justify-between gap-4 my-4 p-2">
       <div className="left">
@@ -24,15 +50,15 @@ const CartItem = ({ name, quantity, price, imageUrl }: CartItemProps) => {
           <Button
             title="-"
             styleClass="w-8 h-8 bg-gray-200 cursor-pointer rounded-l"
-            disabled={false}
-            onClick={() => {}}
+            disabled={quantity <= 1}
+            onClick={handleQtyDecrease}
           />
           <span className="mx-2">{quantity}</span>
           <Button
             title="+"
             styleClass="w-8 h-8 bg-gray-200 cursor-pointer rounded-l"
-            disabled={false}
-            onClick={() => {}}
+            disabled={quantity >= (stock || 999)}
+            onClick={handleQtyIncrease}
           />
         </div>
         <Button

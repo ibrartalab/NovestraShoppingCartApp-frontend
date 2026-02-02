@@ -13,3 +13,19 @@ export const addToCart = async (userId:number,cartId: number, productId: number,
     });
     return response.data;
 }
+
+export const updateCartItem = async (userId:number, quantity: number,productId:number) => {
+    if(quantity < 1){
+        throw new Error("Quantity cannot be less than 1");
+    }
+    if(!productId){
+        throw new Error("Product ID is required to update cart item");
+    }
+    const response = await axiosPrivate.patch(`/Cart/${userId}/updatecartitem`, {
+        userId,
+        productId,
+      quantity,
+    });
+    console.log("Update Cart Item Response:", response);
+    return response.data;
+}

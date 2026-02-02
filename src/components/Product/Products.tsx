@@ -75,66 +75,6 @@ const Products = () => {
               }}
             />
           ))}
-          {/* <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/5.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/4.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/3.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/2.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/1.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/3.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/1.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/2.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/5.jpg"
-            onAddToCart={() => {}}
-          />
-          <ProductCard
-            title="Coco Noir Eau De Parfum"
-            price={89.99}
-            imageUrl="/4.jpg"
-            onAddToCart={() => {}}
-          /> */}
         </div>
       </div>
     </section>
