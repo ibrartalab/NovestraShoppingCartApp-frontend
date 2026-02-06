@@ -120,6 +120,23 @@ export const updateCartItemQty = createAsyncThunk(
   }
 );
 
+export const removeItemFromCart = createAsyncThunk(
+  "cart/removeItem",
+  async (
+    { userId, productId }: { userId: number; productId: number },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await cartAPI.removeCartItem(userId, productId);
+      return response;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data || "Failed to remove item from cart"
+      );
+    }
+  }
+);
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -181,7 +198,19 @@ const cartSlice = createSlice({
       .addCase(updateCartItemQty.rejected, (state, action) => {
         state.loading = false; // Reset loading so the "Updating..." message disappears
         state.error = action.payload as string;
-      });
+      })
+        .addCase(removeItemFromCart.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(removeItemFromCart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cartItems = action.payload.cartItems || [];
+        calculateTotals(state); // Sync totals
+        })
+        .addCase(removeItemFromCart.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.payload as string;
+        });
   },
 });
 

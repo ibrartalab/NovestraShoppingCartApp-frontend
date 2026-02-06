@@ -29,3 +29,8 @@ export const updateCartItem = async (userId:number, quantity: number,productId:n
     console.log("Update Cart Item Response:", response);
     return response.data;
 }
+
+export const removeCartItem = async (userId:number, productId:number) => {
+    const response = await axiosPrivate.delete(`/Cart/${userId}/items/${productId}`);
+    return response.data;
+}

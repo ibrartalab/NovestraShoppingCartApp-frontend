@@ -1,4 +1,4 @@
-import {  updateCartItemQty } from "../../features/cart/cartSlice";
+import {  removeItemFromCart, updateCartItemQty } from "../../features/cart/cartSlice";
 import { useAppDispatch } from "../../hooks/redux/reduxHooks";
 import Button from "../Button";
 
@@ -38,6 +38,9 @@ const CartItem = ({ name, quantity, price, imageUrl,productId,stock,userId }: Ca
     }
   };
 
+  const handleRemoveFromCart = async () => {
+    await dispatch(removeItemFromCart({ userId, productId }));
+  }
   return (
     <div className="cart-item flex justify-between gap-4 my-4 p-2">
       <div className="left">
@@ -65,7 +68,7 @@ const CartItem = ({ name, quantity, price, imageUrl,productId,stock,userId }: Ca
           title="Remove from Cart"
           styleClass="bg-none text-black text-xs underline cursor-pointer p-0"
           disabled={false}
-          onClick={() => {}}
+          onClick={handleRemoveFromCart}
         />
       </div>
     </div>
